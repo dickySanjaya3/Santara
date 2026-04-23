@@ -21,7 +21,6 @@
                     <div>
                         <label class="block text-xs font-black text-gray-500 uppercase mb-3 ml-1">Warna Tema Card</label>
                         <select name="color" class="w-full bg-gray-50 border-2 border-transparent rounded-[1.2rem] px-6 py-4 focus:bg-white focus:border-[#8e7aa3] focus:ring-0 transition-all font-bold text-gray-700 cursor-pointer">
-                            <option value="#8e7aa3">Ungu Santara (Default)</option>
                             <option value="#6366f1">Indigo Power</option>
                             <option value="#10b981">Fresh Emerald</option>
                             <option value="#f59e0b">Warm Amber</option>

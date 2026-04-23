@@ -13,13 +13,13 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f4f7fe;
+            background-color: #ffffff;
             color: #3a3045;
         }
 
         /* Sidebar: Soft Purple Gradient */
         .sidebar {
-            background: linear-gradient(180deg, rgb(28, 218, 148) 0%, rgba(160, 231, 229, 1    ) 80%);
+            background: linear-gradient(180deg, #1cda94 0%, #a0e7e5 80%);
             box-shadow: 10px 0 40px rgba(142, 122, 163, 0.1);
         }
 
@@ -68,10 +68,6 @@
 
                 <a href="{{ route('tasks.create') }}" class="nav-link flex items-center gap-4 py-3.5 px-5 {{ request()->routeIs('tasks.create') ? 'nav-active' : '' }}">
                     <span>📥</span> <span>Data Entry</span>
-                </a>
-
-                <a href="#" class="nav-link flex items-center gap-4 py-3.5 px-5">
-                    <span>📈</span> <span>Analytics</span>
                 </a>
             </nav>
 

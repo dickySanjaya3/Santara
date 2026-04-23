@@ -61,14 +61,14 @@
                         <label class="text-[10px] font-black text-[#1cda94] uppercase tracking-widest ml-1">Full Name</label>
                         <input type="text" name="name" value="{{ old('name') }}" required
                             class="input-style w-full mt-2 px-6 py-4 rounded-2xl text-sm font-semibold text-[#3a3045] outline-none"
-                            placeholder="Dicky Sanjaya">
+                            placeholder="your name">
                     </div>
 
                     <div>
                         <label class="text-[10px] font-black text-[#1cda94] uppercase tracking-widest ml-1">Institutional Email</label>
                         <input type="email" name="email" value="{{ old('email') }}" required
                             class="input-style w-full mt-2 px-6 py-4 rounded-2xl text-sm font-semibold text-[#3a3045] outline-none {{ $errors->has('email') ? 'border-red-300 bg-red-50/50' : '' }}"
-                            placeholder="username@mhs.unesa.ac.id">
+                            placeholder="@mhs.unesa.ac.id">
 
                         @error('email')
                             <div class="mt-4 p-4 bg-red-50 rounded-2xl border border-red-100 flex items-start gap-3 animate-error">
@@ -85,13 +85,13 @@
                             <label class="text-[10px] font-black text-[#1cda94] uppercase tracking-widest ml-1">Password</label>
                             <input type="password" name="password" required
                                 class="input-style w-full mt-2 px-6 py-4 rounded-2xl text-sm font-semibold text-[#3a3045] outline-none"
-                                placeholder="••••••••">
+                                placeholder="password">
                         </div>
                         <div>
-                            <label class="text-[10px] font-black text-[#1cda94] uppercase tracking-widest ml-1">Confirm</label>
+                            <label class="text-[10px] font-black text-[#1cda94] uppercase tracking-widest ml-1">Confirm your password</label>
                             <input type="password" name="password_confirmation" required
                                 class="input-style w-full mt-2 px-6 py-4 rounded-2xl text-sm font-semibold text-[#1cda94] outline-none"
-                                placeholder="••••••••">
+                                placeholder="password">
                         </div>
                     </div>
                 </div>

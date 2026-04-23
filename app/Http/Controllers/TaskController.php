@@ -10,55 +10,35 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     /**
-     * Tampilan Utama: Card per Mata Kuliah.
+     * Tampilan Utama: Hanya menampilkan tugas yang belum selesai (pending).
      */
     public function index()
-{
-    // Ambil data subjects untuk Card utama
-    $subjects = Subject::where('user_id', Auth::id())
-        ->with(['tasks' => function($query) {
-            $query->orderBy('deadline', 'asc');
-        }])
-        ->get();
-
-    // AMBIL DATA AKTIVITAS TERDEKAT (Maksimal 3 tugas teratas)
-    $upcomingTasks = \App\Models\Task::where('user_id', Auth::id())
-        ->where('status', '!=', 'completed') // Hanya yang belum selesai
-        ->orderBy('deadline', 'asc') // Urutkan yang paling mepet di atas
-        ->take(3)
-        ->get();
-
-    return view('dashboard', compact('subjects', 'upcomingTasks'));
-}
-
-    /**
-     * Halaman Input: Form untuk Matkul dan Tugas.
-     */
-    public function create()
     {
-        // Ambil list matkul untuk dropdown di form tugas
-        $subjects = Subject::where('user_id', Auth::id())->get();
+        // 1. Ambil data subjects, tapi FILTER tugasnya hanya yang 'pending'
+        $subjects = Subject::where('user_id', Auth::id())
+            ->with(['tasks' => function($query) {
+                $query->where('status', '!=', 'completed') // FILTER: Sembunyikan yang sudah Done
+                      ->orderBy('deadline', 'asc');
+            }])
+            ->get();
 
-        return view('tasks.create', compact('subjects'));
+        // 2. Ambil Global Urgent Tasks (Hanya yang pending dan paling mepet)
+        $upcomingTasks = Task::where('user_id', Auth::id())
+            ->where('status', '!=', 'completed') // FILTER: Sembunyikan yang sudah Done
+            ->orderBy('deadline', 'asc')
+            ->take(3)
+            ->get();
+
+        return view('dashboard', compact('subjects', 'upcomingTasks'));
     }
 
     /**
-     * Simpan Mata Kuliah Baru.
+     * Halaman Input Data.
      */
-    public function storeSubject(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'color' => 'required|string',
-        ]);
-
-        Subject::create([
-            'user_id' => Auth::id(),
-            'name' => $request->name,
-            'color' => $request->color,
-        ]);
-
-        return redirect()->back()->with('success', 'Mata kuliah berhasil ditambahkan!');
+        $subjects = Subject::where('user_id', Auth::id())->get();
+        return view('tasks.create', compact('subjects'));
     }
 
     /**
@@ -83,5 +63,22 @@ class TaskController extends Controller
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Tugas berhasil diposting!');
+    }
+
+    /**
+     * Update Status Tugas menjadi Selesai.
+     */
+    public function updateStatus(Task $task)
+    {
+        if ($task->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $task->update([
+            'status' => 'completed'
+        ]);
+
+        // Redirect back agar tetap di halaman detail setelah klik Done
+        return redirect()->back()->with('success', 'Tugas diselesaikan! Dashboard otomatis bersih.');
     }
 }
