@@ -60,10 +60,10 @@
                         <input type="text" name="title" placeholder="Contoh: Modul 4 Laravel Dasar" required
                             class="w-full bg-gray-50 border-2 border-transparent rounded-[1.2rem] px-6 py-4 focus:bg-white focus:border-[#8e7aa3] focus:ring-0 transition-all font-bold text-gray-700">
                     </div>
-                    <div>
-                        <label class="block text-xs font-black text-gray-500 uppercase mb-3 ml-1">Deadline Pengumpulan</label>
-                        <input type="date" name="deadline" required
-                            class="w-full bg-gray-50 border-2 border-transparent rounded-[1.2rem] px-6 py-4 focus:bg-white focus:border-[#8e7aa3] focus:ring-0 transition-all font-bold text-gray-700">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-[#8e7aa3] uppercase tracking-widest">Deadline & Time</label>
+                        <input type="datetime-local" name="deadline"
+                        class="w-full p-4 rounded-2xl border-gray-50 bg-gray-50 text-sm font-bold focus:ring-[#10b981] focus:border-[#10b981] transition-all">
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-xs font-black text-gray-500 uppercase mb-3 ml-1">Keterangan Tambahan</label>

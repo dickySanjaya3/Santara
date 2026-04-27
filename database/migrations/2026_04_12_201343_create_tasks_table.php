@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->string('title'); // Judul tugas
             $table->text('description')->nullable(); // Deskripsi tugas
-            $table->date('deadline'); // Tanggal pengumpulan
+            $table->dateTime('deadline'); // Tanggal pengumpulan
 
             // Status tugas
             $table->enum('status', ['pending', 'in_progress', 'completed'])->default('pending');

@@ -13,13 +13,13 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #ffffff;
+            background-color: #e9e9e9;
             color: #3a3045;
         }
 
         /* Sidebar: Soft Purple Gradient */
         .sidebar {
-            background: linear-gradient(180deg, #1cda94 0%, #a0e7e5 80%);
+            background: linear-gradient(180deg, #059669 0%, #059669 80%);
             box-shadow: 10px 0 40px rgba(142, 122, 163, 0.1);
         }
 
@@ -93,46 +93,40 @@
 
         <main class="flex-1 flex flex-col max-h-screen overflow-hidden">
 
-            <header class="flex flex-col md:flex-row justify-between items-center px-12 py-8 bg-transparent gap-6">
+            <header class="flex flex-col md:flex-row justify-between items-center px-12 py-6 bg-transparent gap-8">
 
-                <div class="flex-shrink-0">
-                    <h2 class="text-2xl font-extrabold text-[#3a3045] tracking-tight">
-                        Welcome to <span class="text-[#10b981]">Santara</span>
-                    </h2>
-                </div>
+    <div class="flex-1 max-w-lg">
+        <div class="relative group">
+            <input type="text" placeholder="Search tasks or subjects..."
+                class="w-full bg-white border-none rounded-2xl py-2.5 pl-6 pr-14 text-[11px] font-semibold text-gray-400 shadow-sm focus:ring-4 focus:ring-[#10b981]/5 transition-all outline-none">
 
-                <div class="flex-1 max-w-md mx-auto w-full">
-                    <div class="relative group">
-                        <input type="text" placeholder="Search tasks..."
-                            class="w-full bg-white border-none rounded-full py-3 pl-6 pr-14 text-xs font-semibold text-gray-500 shadow-sm focus:ring-4 focus:ring-[#8e7aa3]/10 transition-all outline-none">
-                        <div class="absolute right-1.5 top-1.5 bottom-1.5 w-10 bg-[#10b981] rounded-full flex items-center justify-center text-white shadow-lg cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+            <div class="absolute right-1 top-1 bottom-1 w-9 bg-[#10b981] rounded-xl flex items-center justify-center text-white shadow-md cursor-pointer hover:bg-[#059669] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+        </div>
+    </div>
 
-                <div class="flex items-center gap-4 bg-white px-4 py-2 rounded-2xl border border-gray-100 shadow-sm">
-                    <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=10b981&color=fff&bold=true"
-                         class="w-9 h-9 rounded-xl" alt="User Avatar">
+    <div class="flex items-center gap-3 bg-white px-3 py-1.5 rounded-2xl border border-gray-50 shadow-sm transition-all hover:shadow-md">
+        <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=10b981&color=fff&bold=true"
+             class="w-8 h-8 rounded-xl shadow-sm" alt="User Avatar">
 
-                    <div class="flex flex-col border-r pr-5 border-gray-100">
-                        <span class="text-xs font-extrabold text-[#3a3045] leading-tight mb-0.5 lowercase">{{ Auth::user()->name }}</span>
-                        <span class="text-[9px] font-bold text-[#8e7aa3] uppercase tracking-wider">Active Student</span>
-                    </div>
+        <div class="flex flex-col border-r pr-4 border-gray-100">
+            <span class="text-[11px] font-black text-[#3a3045] leading-tight mb-0.5 lowercase">{{ Auth::user()->name }}</span>
+            <span class="text-[8px] font-extrabold text-[#10b981] uppercase tracking-wider">Active</span>
+        </div>
 
-                    <form method="POST" action="{{ route('logout') }}" class="flex items-center">
-                        @csrf
-                        <button type="submit" class="p-1 text-gray-300 hover:text-red-500 transition-colors transform hover:scale-110">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-            </header>
-
+        <form method="POST" action="{{ route('logout') }}" class="flex items-center">
+            @csrf
+            <button type="submit" class="p-1 text-gray-300 hover:text-red-500 transition-all transform hover:scale-105 active:scale-90">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</header>
             <div class="flex-1 overflow-y-auto px-12 pb-12 custom-scrollbar">
                 {{ $slot }}
             </div>

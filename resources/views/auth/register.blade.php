@@ -49,7 +49,7 @@
                 <span class="text-white font-extrabold text-2xl">S</span>
             </div>
             <h1 class="text-2xl font-black text-[#3a3045] tracking-tighter uppercase">Create Santara Account</h1>
-            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-2">Join the Informatics Circle</p>
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-2">Join the Santara Circle</p>
         </div>
 
         <div class="auth-card p-10 rounded-[2.5rem] shadow-2xl shadow-[#8e7aa3]/5">
@@ -90,14 +90,14 @@
                         <div>
                             <label class="text-[10px] font-black text-[#1cda94] uppercase tracking-widest ml-1">Confirm your password</label>
                             <input type="password" name="password_confirmation" required
-                                class="input-style w-full mt-2 px-6 py-4 rounded-2xl text-sm font-semibold text-[#1cda94] outline-none"
+                                class="input-style w-full mt-2 px-6 py-4 rounded-2xl text-sm font-semibold text-[#3a3045] outline-none"
                                 placeholder="password">
                         </div>
                     </div>
                 </div>
 
                 <button type="submit"
-                    class="w-full mt-10 bg-[#1cda94] hover:bg-[#7a688d] text-white py-5 rounded-[1.5rem] text-xs font-black uppercase tracking-[0.25em] shadow-lg shadow-[#1cda94]/20 transition-all active:scale-[0.97]">
+                    class="w-full mt-10 bg-[#1cda94] hover:bg-[#17b880] text-white py-5 rounded-[1.5rem] text-xs font-black uppercase tracking-[0.25em] shadow-lg shadow-[#1cda94]/20 transition-all active:scale-[0.97]">
                     Register Now
                 </button>
             </form>
