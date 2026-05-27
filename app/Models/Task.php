@@ -12,7 +12,7 @@ class Task extends Model
 
     /**
      * Kolom yang dapat diisi secara massal.
-     * Sesuaikan dengan kolom yang kita buat di migration tadi.
+     * Ditambahkan file_instruction agar tidak diblokir Laravel lagi.
      */
     protected $fillable = [
         'user_id',
@@ -21,6 +21,7 @@ class Task extends Model
         'description',
         'deadline',
         'status',
+        'file_instruction', // <--- FIX: Tambahkan baris ini, jangan sampai typo ya!
     ];
 
     /**
@@ -30,5 +31,13 @@ class Task extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relasi: Setiap tugas terhubung ke satu Subject (Mata Kuliah).
+     */
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
     }
 }

@@ -14,8 +14,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // 1. Ambil data subjects, tapi FILTER tugasnya hanya yang 'pending'
+        // 1. Ambil data subjects, hitung tugas pending, dan FILTER tugasnya hanya yang 'pending'
         $subjects = Subject::where('user_id', Auth::id())
+            ->withCount(['tasks' => function($query) {
+                $query->where('status', '!=', 'completed'); // Menyuplai data 'tasks_count' untuk tugas aktif ke Blade
+            }])
             ->with(['tasks' => function($query) {
                 $query->where('status', '!=', 'completed') // FILTER: Sembunyikan yang sudah Done
                       ->orderBy('deadline', 'asc');
@@ -46,23 +49,40 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'subject_id' => 'required|exists:subjects,id',
-            'title' => 'required|string|max:255',
-            'deadline' => 'required|date',
-            'description' => 'nullable|string',
+        // 1. Validasi data yang masuk dari form
+        $validated = $request->validate([
+            'title' => 'required',
+            'subject_id' => 'required',
+            'deadline' => 'required',
+            'description' => 'nullable',
+            'file_instruction' => 'nullable|mimes:pdf,doc,docx|max:5120', // Maksimal 5MB
         ]);
 
-        Task::create([
-            'user_id' => Auth::id(),
-            'subject_id' => $request->subject_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'deadline' => $request->deadline,
-            'status' => 'pending',
-        ]);
+        // 2. Ambil ID user yang sedang login otomatis
+        $validated['user_id'] = auth()->id();
 
-        return redirect()->route('dashboard')->with('success', 'Tugas berhasil diposting!');
+        // 3. JEMBATAN UTAMA: Proses file fisik dan masukkan path-nya ke dalam array $validated
+        if ($request->hasFile('file_instruction')) {
+            // Ambil file aslinya
+            $file = $request->file('file_instruction');
+
+            // Buat nama unik agar tidak tabrakan di storage
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // Simpan file ke folder: storage/app/public/uploads/tasks
+            $filePath = $file->storeAs('uploads/tasks', $fileName, 'public');
+
+            // TIMPA NILAI NULL: Masukkan path file asli ke data yang akan disimpan ke DB
+            $validated['file_instruction'] = $filePath;
+        } else {
+            // Jika user tidak upload file, set kolom tetap null
+            $validated['file_instruction'] = null;
+        }
+
+        // 4. Eksekusi simpan ke database dengan data yang sudah lengkap
+        Task::create($validated);
+
+        return redirect()->route('dashboard')->with('success', 'Tugas berhasil disimpan dengan lampiran! 🚀');
     }
 
     /**

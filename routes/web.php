@@ -6,6 +6,8 @@ use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('welcome'); });
+Route::view('/panduan', 'pages.panduan')->name('panduan');
+Route::view('/tentang', 'pages.tentang')->name('tentang');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // --- Dashboard & Data Entry ---
