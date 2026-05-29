@@ -383,7 +383,7 @@
 <footer class="mt-margin-desktop w-full py-12 flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container shadow-[0_-10px_30px_rgba(0,0,0,0.03)] rounded-t-lg">
 <div class="flex flex-col items-center md:items-start">
 <span class="font-headline-md text-primary mb-2">Santara</span>
-<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Santara. State University of Surabaya.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2026 Santara. State University of Surabaya.</p>
 </div>
 <div class="flex gap-6">
 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>

@@ -210,7 +210,7 @@
 <div class="relative z-10 max-w-lg">
 <h2 class="font-display-lg text-display-lg text-on-primary-container mb-2">Hi, {{ explode(' ', Auth::user()->name)[0] }}!</h2>
 <p class="text-body-lg font-body-lg text-white/80 mb-6">Kamu punya <strong>{{ $subjects->sum('tasks_count') }}</strong> tugas aktif yang perlu ditata hari ini.</p>
-<a href="{{ route('tasks.create') }}" class="bg-on-primary-container text-grey-primary px-8 py-3 rounded-full font-label-md clay-button hover:scale-105 transition-transform inline-block text-center">
+<a href="{{ route('tasks.create') }}" class="bg-on-primary-container text-white px-8 py-3 rounded-full font-label-md clay-button hover:scale-105 transition-transform inline-block text-center">
                     Tambah Tugas Baru
 </a>
 </div>
