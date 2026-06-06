@@ -5,11 +5,16 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::view('/panduan', 'pages.panduan')->name('panduan');
 Route::view('/tentang', 'pages.tentang')->name('tentang');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+// Mengubah middleware dari ['auth', 'verified'] menjadi ['auth'] saja
+Route::middleware(['auth'])->group(function () {
+
     // --- Dashboard & Data Entry ---
     Route::get('/dashboard', [TaskController::class, 'index'])->name('dashboard');
     Route::get('/input-data', [TaskController::class, 'create'])->name('tasks.create');
@@ -17,12 +22,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // --- Subject Routes (Wadah Matkul) ---
     Route::post('/subjects', [SubjectController::class, 'store'])->name('subjects.store');
     Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('subjects.destroy');
+    Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('subjects.show');
 
     // --- Task Routes (Detail Tugas) ---
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
-
-    // Tambahkan di dalam group middleware auth
-Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('subjects.show');
 
     /**
      * ROUTE BARU: Update Status Tugas

@@ -200,14 +200,6 @@
 <span class="material-symbols-outlined">edit_note</span>
 <span class="font-label-md text-label-md">Data Entry</span>
 </a>
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-xl transition-all hover:translate-x-2" href="#">
-<span class="material-symbols-outlined">calendar_month</span>
-<span class="font-label-md text-label-md">Calendar</span>
-</a>
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-xl transition-all hover:translate-x-2" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
-</a>
 </nav>
 </aside>
 <!-- Main Content Area -->

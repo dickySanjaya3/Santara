@@ -66,6 +66,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // UPDATE: Menambahkan Flash Message Sukses Registrasi untuk memicu Alert/Toast di Dashboard
+        return redirect(route('dashboard', absolute: false))
+            ->with('success', 'Registrasi berhasil! Selamat datang di Santara, King! 🚀');
     }
 }
